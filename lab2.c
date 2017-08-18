@@ -1,5 +1,5 @@
 #include "stdio.h"
-#include "stdlib.h"
+#include "string.h"
 int movement[10][3] = {{4,6,-1},{6,8,-1},{7,9,-1},{4,8,-1},{0,3,9},{-1,-1,-1},{0,1,7},{2,6,-1},{1,3,-1},{2,4,-1}};
 int numMove[10] = {2,2,2,2,3,0,3,2,2,2};
 void f(int n) {
@@ -34,42 +34,36 @@ void explore_ways(int start_node, int acc) {
     explore_ways(movement[start_node][i], acc+1);
   }
 }
+char word[30];
+int countPermute = 0;
+int acc = 0;
+void permute(char* s) {
+  word[acc]=s[0];
+  acc++;
+  if (acc==strlen(s)) {
+    for(int i=0;i<strlen(s);i++){
+      printf("%c",word[i]);
+    }
+    printf("\n");
+    acc = 1;
+    return;
+  }
+  for(int i=0;i<strlen(s)-1;i++){
+    permute(s+1);
+  }
 
-
-
-// int duplicate(char* num){
-//   if(strlen(num)==0){
-//     return 1;
-//   }
-// }
-
-// void permute(char* s) {
-//   if (strlen(s) <= ) {
-//     printf("%s\n", s);
-//     return;
-//   }
-//   for (int i = 0; i < strlen(s); i++) {
-//     char* prefix = malloc(1);
-//     prefix[0] = s[i]
-//     char* suffix = malloc(strlen(s) - 1)
-//     strcpy(suffix, s);
-//     suffix[i] = '';
-//     permute(strcat(prefix, suffix));
-//   }
-//   printf("%s", s);
-// }
+}
 
 int main(){
   f(5);
   printf("\n");
   printf("%d\n", sumBinary(14));
-  // permute("ab");
   char * pnum;
-  // for (int i=0; i<10; i++) {
-  //   phone(pnum, 1,0);
-  // }
   for (int i=0; i<10; i++) {
     explore_ways(i, 1);
   }
   printf("Number of valid number : %d\n",count );
+  // printf("%s\n","Suck" );
+  permute("ab");
+
 }
